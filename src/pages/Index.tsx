@@ -3,7 +3,9 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import DeltaWaveTypes from '@/components/DeltaWaveTypes';
 
 interface ECGAnalysis {
   pqInterval: number;
@@ -58,6 +60,20 @@ const Index = () => {
             Автоматизированная оценка электрокардиограммы
           </p>
         </header>
+
+        <Tabs defaultValue="analysis" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="analysis" className="text-base">
+              <Icon name="Activity" size={18} className="mr-2" />
+              Анализ ЭКГ
+            </TabsTrigger>
+            <TabsTrigger value="delta-waves" className="text-base">
+              <Icon name="Waves" size={18} className="mr-2" />
+              Виды дельта-волн
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="analysis" className="space-y-6">
 
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="p-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
@@ -248,6 +264,12 @@ const Index = () => {
             </div>
           </div>
         </Card>
+          </TabsContent>
+
+          <TabsContent value="delta-waves">
+            <DeltaWaveTypes />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
